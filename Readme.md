@@ -23,10 +23,10 @@ cat [file] | grep data: | wc -l
 
 Values in messages per second 
 
-| build type | uncompressed | compressed |
-|-----------|--------------|------------|
-| debug     | 193223       | 26760      |
-| release   | 812470       | 245966     |
+| build type | uncompressed | compressed | reduction in percent |
+|:-----------|-------------:|-----------:|---------------------:|
+| debug      |       193223 |      26760 |                      |
+| release    |       812470 |     245966 |               -69,72 |
 
 
 ## Summary
