@@ -12,13 +12,12 @@ use async_std::stream::StreamExt;
 
 #[tokio::main]
 async fn main() {
-    let router = Router::with_hoop(Logger)
-        .hoop(Compression::new().with_algos(&[CompressionAlgo::Gzip]))
-        .path("/sse")
-        .get(sse_stream);
 
+    let router = Router::with_hoop(Logger::new())
+        .hoop(Compression::new().enable_gzip(CompressionLevel::Fastest))
+        .push(Router::new().path("sse").get(sse_stream));
 
-    Server::new(TcpListener::bind("0.0.0.0:9090")).serve(router).await;
+    Server::new(TcpListener::new("0.0.0.0:9090").bind().await).serve(router).await;
 }
 
 #[handler]
