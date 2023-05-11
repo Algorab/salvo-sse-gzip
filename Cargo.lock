@@ -1329,6 +1329,7 @@ version = "0.1.0"
 dependencies = [
  "async-std",
  "flate2",
+ "rand 0.8.5",
  "salvo",
  "tokio",
  "tokio-stream",

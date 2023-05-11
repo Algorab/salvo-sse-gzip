@@ -1,35 +1,12 @@
-# salvo-sse-gzip
+# salvo-sse-gzip whith slow stream
 ## Description
-Show's the sse throughput reduction when used the compression gzip
+Show's the sse behavior on a slow stream a message 0-1000 milliseconds when used the compression gzip.
+For roundabout 10 minutes now output (sse, keep-alive) is written. After that period all messages are
+written at once. And the next 10 minutes wait start.
 
-## Hardware
-Mac M1 10core
-
-## Results for 30s
-
-curl uncompressed
-```shell
-timeout 30 curl -i http://localhost:9090/sse > out_uncompressed.txt
-```
+## Command for testing
 curl compressed
 ```shell
-timeout 30 curl --compressed -i http://localhost:9090/sse -H "accept-encoding: gzip "> out_compressed.txt
+curl --compressed -i http://localhost:9090/sse -H "accept-encoding: gzip"
 ```
-
-get message amount for 30s
-```shell
-cat [file] | grep data: | wc -l
-```
-
-Values in messages per second 
-
-| build type | uncompressed | compressed | reduction in percent |
-|:-----------|-------------:|-----------:|---------------------:|
-| debug      |       193223 |      26760 |                      |
-| release    |       812470 |     245966 |               -69,72 |
-
-
-## Summary
-Using the compression slow down the throughput dramatically. While the
-uncompressed throughput is perfect.
 
