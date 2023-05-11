@@ -1,4 +1,4 @@
-# salvo-sse-gzip whith slow stream
+# salvo-sse-gzip with slow stream
 ## Description
 Show's the sse behavior on a slow stream a message 0-1000 milliseconds when used the compression gzip.
 For roundabout 10 minutes now output (sse, keep-alive) is written. After that period all messages are
